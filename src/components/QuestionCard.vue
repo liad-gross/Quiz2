@@ -19,9 +19,11 @@ export default {
       required: true
     }
   },
+  emits: ['answer'],
   methods: {
     handleClick(index) {
-      console.log("clicked", index)
+      const isCorrect = index === this.question.correct
+      this.$emit('answer', isCorrect)
     }
   }
 }
