@@ -1,10 +1,23 @@
 <template>
   <div>
-    <!-- TODO: wire up router-view -->
     <h1>QuizBlitz</h1>
+    <QuestionCard :question="testQuestion" />
   </div>
 </template>
 
-<script setup>
-// TODO: connect store and router
+<script>
+import QuestionCard from './components/QuestionCard.vue'
+
+export default {
+  components: { QuestionCard },
+  data() {
+    return {
+      testQuestion: {
+        question: "What does CSS stand for?",
+        answers: ["Cascading Style Sheets", "Computer Style System", "Creative Sheet Syntax", "Coded Style Script"],
+        correct: 0
+      }
+    }
+  }
+}
 </script>

@@ -1,0 +1,4 @@
+Prompt Log — Part 1-1 (Project Setup)
+/claude-sonnet-4-6 Scaffold a Vite + Vue 3 project called QuizBlitz. Create package.json with vue, vue-router, pinia dependencies and @vitejs/plugin-vue devDependency. Include index.html, vite.config.js, src/main.js, src/style.css, src/questions.js with 10 web dev questions, empty component shells for QuestionCard.vue and ScoreBoard.vue, a minimal App.vue, and an empty store stub at src/stores/useGameStore.js.
+Prompt Log — Part 1-2 (QuestionCard renders)
+/claude-sonnet-4-6 Update App.vue to hardcode a single test question object in data() and pass it to QuestionCard as a prop. Update QuestionCard.vue to accept a question prop (Object, required), render the question text in a p tag, loop over question.answers with v-for to render a button for each answer, and on click call a handleClick(index) method that does console.log("clicked", index).
