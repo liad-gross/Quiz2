@@ -9,3 +9,7 @@
 # Prompt Log — Part 2-1 (Game loop in App.vue)
 
 **/claude-sonnet-4-6** Update App.vue to import all questions from questions.js and implement a full game loop using data() with: questions array, currentIndex (0), score (0), gameState ('start'). Use v-if to show a start screen when gameState is 'start', QuestionCard when gameState is 'playing', and ScoreBoard when gameState is 'end'. Add methods: startGame() resets state and sets gameState to 'playing', handleAnswer(isCorrect) increments score if correct then advances currentIndex or sets gameState to 'end' if on the last question, restartGame() calls startGame(). Update QuestionCard.vue to emit an 'answer' event with true or false based on whether the clicked index matches question.correct. Update ScoreBoard.vue to accept score and total as Number props and display both.
+
+# Prompt Log — Part 2-2 (Vue Router)
+
+**/claude-sonnet-4-6** Add Vue Router to the project. Create src/router/index.js with two routes: '/' maps to StartScreen.vue and '/play' maps to PlayScreen.vue, using createWebHashHistory. Update main.js to register the router. Simplify App.vue to just render a router-view. Create src/views/StartScreen.vue with a welcome message and a Play button that calls router.push('/play'). Create src/views/PlayScreen.vue that contains the full game loop (moved from App.vue) with gameState starting as 'playing', and a Play Again button that calls router.push('/').
