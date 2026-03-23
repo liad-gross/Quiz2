@@ -13,3 +13,7 @@
 # Prompt Log — Part 2-2 (Vue Router)
 
 **/claude-sonnet-4-6** Add Vue Router to the project. Create src/router/index.js with two routes: '/' maps to StartScreen.vue and '/play' maps to PlayScreen.vue, using createWebHashHistory. Update main.js to register the router. Simplify App.vue to just render a router-view. Create src/views/StartScreen.vue with a welcome message and a Play button that calls router.push('/play'). Create src/views/PlayScreen.vue that contains the full game loop (moved from App.vue) with gameState starting as 'playing', and a Play Again button that calls router.push('/').
+
+# Prompt Log — Part 2-3 (Pinia store)
+
+**/claude-sonnet-4-6** Migrate all game logic into useGameStore.js using Pinia's options store syntax. State: questions (array, loaded in startGame), currentIndex (0), score (0), gameState ('start'), selectedAnswer (null). Actions: startGame() loads questions from questions.js and resets all state to playing, submitAnswer(index) checks if index matches current question's correct value and increments score, then calls nextQuestion(), nextQuestion() advances currentIndex or sets gameState to 'end', resetGame() resets everything to defaults. Update PlayScreen.vue to call store.startGame() on setup and read gameState from the store. Update QuestionCard.vue to read currentQuestion from the store and call store.submitAnswer(index) on click — no props. Update ScoreBoard.vue to read score and questions.length from the store and have a Play Again button that calls store.resetGame() and router.push('/').

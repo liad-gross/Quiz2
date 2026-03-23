@@ -1,10 +1,10 @@
 <template>
   <div class="question-card">
-    <p>{{ question.question }}</p>
+    <p>{{ currentQuestion.question }}</p>
     <button
-      v-for="(answer, index) in question.answers"
+      v-for="(answer, index) in currentQuestion.answers"
       :key="index"
-      @click="handleClick(index)"
+      @click="store.submitAnswer(index)"
     >
       {{ answer }}
     </button>
@@ -12,19 +12,14 @@
 </template>
 
 <script>
+import { computed } from 'vue'
+import { useGameStore } from '../stores/useGameStore.js'
+
 export default {
-  props: {
-    question: {
-      type: Object,
-      required: true
-    }
-  },
-  emits: ['answer'],
-  methods: {
-    handleClick(index) {
-      const isCorrect = index === this.question.correct
-      this.$emit('answer', isCorrect)
-    }
+  setup() {
+    const store = useGameStore()
+    const currentQuestion = computed(() => store.questions[store.currentIndex])
+    return { store, currentQuestion }
   }
 }
 </script>

@@ -1,21 +1,26 @@
 <template>
   <div class="scoreboard">
     <h2>Game Over!</h2>
-    <p>You scored {{ score }} out of {{ total }}</p>
+    <p>You scored {{ store.score }} out of {{ store.questions.length }}</p>
+    <button @click="playAgain">Play Again</button>
   </div>
 </template>
 
 <script>
+import { useGameStore } from '../stores/useGameStore.js'
+import { useRouter } from 'vue-router'
+
 export default {
-  props: {
-    score: {
-      type: Number,
-      required: true
-    },
-    total: {
-      type: Number,
-      required: true
+  setup() {
+    const store = useGameStore()
+    const router = useRouter()
+
+    function playAgain() {
+      store.resetGame()
+      router.push('/')
     }
+
+    return { store, playAgain }
   }
 }
 </script>
